@@ -35,5 +35,14 @@ public class LutadorController {
         return  ResponseEntity.status(200).build();
     }
 
+    @PostMapping("/golpe")
+    public ResponseEntity postGolpear(){
+
+    }
+
+    @GetMapping("/mortos")
+    public  ResponseEntity getLutadoresMortos(){
+        return ResponseEntity.status(200).body(lutadorRepository.findByVidaEquals(0.0));
+    }
 
 }

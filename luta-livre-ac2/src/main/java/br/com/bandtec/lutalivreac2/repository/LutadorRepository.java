@@ -16,6 +16,8 @@ public interface LutadorRepository extends JpaRepository<Lutador, Integer> {
 //    @Query("from lutador where vida > 0.0")
     List<Lutador> findByVidaGreaterThan(Double vida);
 
+    List<Lutador> findByVidaEquals(Double vida);
+
     @Transactional
     @Modifying
     @Query(value = "update lutador l set concentracoes_realizadas = concentracoes_realizadas + 1 where l.id =:id", nativeQuery = true)
