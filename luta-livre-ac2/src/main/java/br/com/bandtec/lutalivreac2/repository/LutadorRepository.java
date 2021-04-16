@@ -4,7 +4,9 @@ import br.com.bandtec.lutalivreac2.classes.Lutador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface LutadorRepository extends JpaRepository<Lutador, Integer> {
@@ -14,8 +16,9 @@ public interface LutadorRepository extends JpaRepository<Lutador, Integer> {
 //    @Query("from lutador where vida > 0.0")
     List<Lutador> findByVidaGreaterThan(Double vida);
 
+    @Transactional
     @Modifying
-    @Query("update lutador l set l.concentracoes_realizadas = l.concentracoes_realizadas + 1 where id=:id")
-    List<Lutador> alteracaoLutadores(Integer id);
+    @Query(value = "update lutador l set concentracoes_realizadas = concentracoes_realizadas + 1 where l.id =:id", nativeQuery = true)
+    void updateLutadorConcentracao(@Param("id") Integer id);
 
 }

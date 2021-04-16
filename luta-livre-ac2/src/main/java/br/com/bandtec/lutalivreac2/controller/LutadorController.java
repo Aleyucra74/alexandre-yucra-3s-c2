@@ -29,9 +29,10 @@ public class LutadorController {
         return ResponseEntity.status(201).build();
     }
 
-    @PostMapping("/{idLutador}/concentrar")
-    public ResponseEntity postConcentrar(@PathVariable Integer idLutador){
-        return  ResponseEntity.status(200).body(lutadorRepository.alteracaoLutadores(idLutador));
+    @PostMapping("/{id}/concentrar")
+    public ResponseEntity postConcentrar(@PathVariable("id") Integer id){
+        lutadorRepository.updateLutadorConcentracao(id);
+        return  ResponseEntity.status(200).build();
     }
 
 
